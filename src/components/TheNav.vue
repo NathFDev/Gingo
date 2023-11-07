@@ -1,8 +1,8 @@
 <template>
   <BaseModal v-if="showModal" @close="toggleModal" />
-  <nav class="flex justify-between py-8 px-14 w-screen">
+  <nav class="flex justify-between py-6 px-12 w-screen">
     <RouterLink to="/">
-      <svg class="w-12 h-12" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <svg class="w-10 h-10" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="myGradient" x1="100%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" style="stop-color: #0918c4; stop-opacity: 1" />
@@ -18,7 +18,7 @@
     </RouterLink>
     <button @click="toggleModal">
       <svg
-        class="w-12 h-12"
+        class="w-10 h-10"
         height="24"
         stroke-width="1.5"
         viewBox="0 0 24 24"
