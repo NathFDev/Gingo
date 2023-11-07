@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+#app {
+  height: 100%;
+  background-image: url('philip-myrtorp-7qaqY9a3H0c-unsplash.jpg');
+  background-size: cover;
+  background-position: center;
+}
