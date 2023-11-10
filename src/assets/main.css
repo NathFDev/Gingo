@@ -4,6 +4,8 @@ body {
   background-image: url('philip-myrtorp-7qaqY9a3H0c-unsplash.jpg');
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 * {
@@ -12,4 +14,15 @@ body {
   box-sizing: border-box;
   font-family: 'Poppins', 'Sans Serif';
   letter-spacing: 0.2rem;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

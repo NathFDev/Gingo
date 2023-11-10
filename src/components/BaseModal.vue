@@ -6,7 +6,7 @@
     ></div>
     <dialog
       open
-      class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[50%] z-50 rounded-lg border-none shadow-inner shadow-[#4118bc] p-0 m-0 overflow-hidden bg-gradient-to-br from-[#0F0F0F] to-[#2d0d6c]"
+      class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[50%] z-50 rounded-lg border-none shadow-inner shadow-[#4118bc] p-0 m-0 overflow-scroll bg-gradient-to-br from-[#0F0F0F] to-[#2d0d6c]"
     >
       <div class="flex justify-end w-full p-6">
         <button class="w-8 h-8" @click="emit('close')">
