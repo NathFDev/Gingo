@@ -67,14 +67,8 @@
           </svg>
         </button>
       </div>
-      <section class="p-4 min-h-[50vh] w-full overflow-hidden">
-        <slot name="content">
-          <p class="text-white align-middle text-justify text-lg font-bold">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere quod deserunt pariatur
-            incidunt magnam tenetur at aut, maiores omnis quasi mollitia est officiis vel
-            consectetur eaque, nulla quidem, explicabo voluptatibus?
-          </p>
-        </slot>
+      <section class="p-4 min-h-[50vh] w-full overflow-y-scroll">
+        <slot name="content"></slot>
       </section>
       <menu class="p-4 flex m-0 justify-center items-center">
         <slot name="action">

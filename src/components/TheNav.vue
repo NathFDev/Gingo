@@ -1,5 +1,14 @@
 <template>
-  <BaseModal v-if="showModal" @close="toggleModal" />
+  <BaseModal v-if="showModal" @close="toggleModal">
+    <template #content>
+      <h1 class="text-white align-middle text-center mb-2 text-4xl font-bold">
+        {{ pageInstructions[currentPath].title }}
+      </h1>
+      <p class="text-white align-middle text-justify text-lg font-bold">
+        {{ pageInstructions[currentPath].content }}
+      </p></template
+    >
+  </BaseModal>
   <nav class="flex justify-between py-6 px-12 w-screen">
     <RouterLink to="/">
       <svg class="w-10 h-10" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
@@ -57,9 +66,20 @@
 </template>
 
 <script setup>
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 import BaseModal from './BaseModal.vue'
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
+import { pageInstructions } from '../data'
+
+const route = useRoute()
+const currentPath = ref('')
+watchEffect(() => {
+  currentPath.value = route.path === '/' ? 'home' : removeLeadingSlash(route.path)
+})
+
+function removeLeadingSlash(path) {
+  return path.replace(/^\//, '')
+}
 
 const showModal = ref(false)
 function toggleModal() {
