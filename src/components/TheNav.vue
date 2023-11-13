@@ -69,7 +69,7 @@
 import { RouterLink, useRoute } from 'vue-router'
 import BaseModal from './BaseModal.vue'
 import { ref, watchEffect } from 'vue'
-import { pageInstructions } from '../data'
+import { pageInstructions } from '../utils/data'
 
 const route = useRoute()
 const currentPath = ref('')

@@ -232,13 +232,13 @@ export const intermediateQuestions = [
   },
   {
     id: 18,
-    kanji: 'いとこ',
-    hiragana: 'いとこ'
+    kanji: '隣人',
+    hiragana: 'りんじん'
   },
   {
     id: 19,
-    kanji: 'ペット',
-    hiragana: 'ぺっと'
+    kanji: 'お爺さん',
+    hiragana: 'おじいさん'
   },
   {
     id: 20,
@@ -292,13 +292,13 @@ export const intermediateQuestions = [
   },
   {
     id: 30,
-    kanji: 'おじいちゃん',
-    hiragana: 'おじいちゃん'
+    kanji: '叔父',
+    hiragana: 'おじ'
   },
   {
     id: 31,
-    kanji: 'おばあちゃん',
-    hiragana: 'おばあちゃん'
+    kanji: '叔母',
+    hiragana: 'おば'
   },
   {
     id: 32,
