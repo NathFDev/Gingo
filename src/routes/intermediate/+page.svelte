@@ -1,5 +1,6 @@
 <script lang="ts">
 	import HandlingButton from "$lib/components/HandlingButton.svelte";
+	import LoadingSpinner from "$lib/components/LoadingSpinner.svelte";
 	import { addScore, addCount } from "$lib/stores/score";
 	import type { intermediate } from "$lib/utils/data";
 	import { fetchQuestion } from "$lib/utils/helper";
@@ -50,9 +51,7 @@
 <div class="container mx-auto my-8">
 	<h1 class="text-center text-2xl font-bold mb-8">Which one is correct statement?</h1>
 	{#if loading}
-		<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-			<span class="loading loading-spinner loading-lg loading-primary"></span>
-		</div>
+		<LoadingSpinner />
 	{:else}
 		<div class="card w-96 bg-base-300 text-neutral-content shadow-xl mx-auto">
 			<div class="card-body">

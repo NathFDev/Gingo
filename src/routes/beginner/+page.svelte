@@ -1,5 +1,6 @@
 <script lang="ts">
 	import HandlingButton from "$lib/components/HandlingButton.svelte";
+	import LoadingSpinner from "$lib/components/LoadingSpinner.svelte";
 	import { addScore, addCount } from "$lib/stores/score";
 	import type { beginner } from "$lib/utils/data";
 	import { fetchQuestion, toUnicode } from "$lib/utils/helper";
@@ -51,9 +52,7 @@
 <div class="container mx-auto my-8">
 	<h1 class="text-center text-2xl font-bold mb-8">Which kanji is correct for following image?</h1>
 	{#if loading}
-		<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-			<span class="loading loading-spinner loading-lg loading-primary"></span>
-		</div>
+		<LoadingSpinner />
 	{:else}
 		<div class="card lg:card-side bg-base-300 shadow-xl max-w-3xl mx-auto">
 			<figure>
