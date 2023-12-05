@@ -1,17 +1,26 @@
-import father from "$lib/assets/images/Father.jpeg";
-import mother from "$lib/assets/images/Mother.jpeg";
+import father from "$lib/assets/images/father.jpeg";
+import daughter from "$lib/assets/images/daughter.jpeg";
+import son from "$lib/assets/images/son.jpeg";
+import uncle from "$lib/assets/images/uncle.jpeg";
+import aunt from "$lib/assets/images/aunt.jpeg";
+import grandmother from "$lib/assets/images/grandmother.jpeg";
+import grandfather from "$lib/assets/images/grandfather.jpeg";
+import sister from "$lib/assets/images/sister.jpeg";
+import mother from "$lib/assets/images/mother.jpeg";
+import brother from "$lib/assets/images/brother.jpeg";
 
 export interface beginner {
 	id: number;
 	image: string;
 	options: string[];
+	yomikata: string[];
 	correctAnswer: string;
 }
 
 export interface intermediate {
 	id: number;
-	kanji: string;
-	hiragana: string;
+	question: string;
+	correctAnswer: boolean;
 }
 
 export interface expert {
@@ -26,324 +35,224 @@ export const beginnerQuestions: beginner[] = [
 		id: 1,
 		image: father,
 		options: ["母", "父", "妹", "兄"],
+		yomikata: ["はは", "ちち", "いもうと", "あに"],
 		correctAnswer: "父"
 	},
 	{
 		id: 2,
 		image: mother,
 		options: ["弟", "妹", "父", "母"],
+		yomikata: ["おとうと", "いもうと", "ちち", "はは"],
 		correctAnswer: "母"
 	},
 	{
 		id: 3,
-		image: "Brother.jpg",
+		image: brother,
 		options: ["兄", "姉", "父", "母"],
+		yomikata: ["あに", "あね", "ちち", "はは"],
 		correctAnswer: "兄"
 	},
 	{
 		id: 4,
-		image: "Sister.jpg",
+		image: sister,
 		options: ["妹", "弟", "母", "父"],
+		yomikata: ["いもうと", "おとうと", "はは", "ちち"],
 		correctAnswer: "妹"
 	},
 	{
 		id: 5,
-		image: "Grandfather.jpg",
-		options: ["おばあさん", "おじいさん", "お母さん", "お父さん"],
-		correctAnswer: "おじいさん"
+		image: grandfather,
+		options: ["祖母", "祖父", "母", "父"],
+		yomikata: ["そぼ", "そふ", "はは", "ちち"],
+		correctAnswer: "祖父"
 	},
 	{
 		id: 6,
-		image: "Grandmother.jpg",
-		options: ["おばあさん", "おじいさん", "お母さん", "お父さん"],
-		correctAnswer: "おばあさん"
+		image: grandmother,
+		options: ["祖母", "祖父", "母", "父"],
+		yomikata: ["そぼ", "そふ", "はは", "ちち"],
+		correctAnswer: "祖母"
 	},
+
 	{
 		id: 7,
-		image: "Daughter.jpg",
+		image: daughter,
 		options: ["息子", "娘", "父", "母"],
+		yomikata: ["むすこ", "むすめ", "ちち", "はは"],
 		correctAnswer: "娘"
 	},
 	{
 		id: 8,
-		image: "Son.jpg",
+		image: son,
 		options: ["娘", "息子", "姉", "弟"],
+		yomikata: ["むすめ", "むすこ", "あね", "おとうと"],
 		correctAnswer: "息子"
 	},
 	{
 		id: 9,
-		image: "Aunt.jpg",
-		options: ["おじさん", "おばさん", "お母さん", "お父さん"],
-		correctAnswer: "おばさん"
-	},
-	{
-		id: 10,
-		image: "Uncle.jpg",
-		options: ["おばさん", "おじさん", "お母さん", "お父さん"],
-		correctAnswer: "おじさん"
-	},
-	{
-		id: 11,
 		image: "Niece.jpg",
 		options: ["姪", "甥", "妹", "兄"],
+		yomikata: ["めい", "おい", "いもうと", "あに"],
 		correctAnswer: "姪"
 	},
 	{
-		id: 12,
+		id: 10,
 		image: "Nephew.jpg",
 		options: ["甥", "姪", "弟", "妹"],
+		yomikata: ["おい", "めい", "おとうと", "いもうと"],
 		correctAnswer: "甥"
 	},
 	{
-		id: 13,
+		id: 11,
 		image: "Girlfriend.jpg",
 		options: ["彼女", "彼氏", "妹", "兄"],
+		yomikata: ["かのじょ", "かれし", "いもうと", "あに"],
 		correctAnswer: "彼女"
 	},
 	{
-		id: 14,
+		id: 12,
 		image: "Boyfriend.jpg",
 		options: ["彼氏", "彼女", "姉", "弟"],
+		yomikata: ["かれし", "かのじょ", "あね", "おとうと"],
 		correctAnswer: "彼氏"
 	},
 	{
-		id: 15,
+		id: 13,
 		image: "Husband.jpg",
 		options: ["妻", "夫", "姉", "弟"],
+		yomikata: ["つま", "おっと", "あね", "おとうと"],
 		correctAnswer: "夫"
 	},
 	{
-		id: 16,
+		id: 14,
 		image: "Wife.jpg",
 		options: ["夫", "妻", "兄", "妹"],
+		yomikata: ["おっと", "つま", "あに", "いもうと"],
 		correctAnswer: "妻"
 	},
 	{
-		id: 17,
+		id: 15,
 		image: "Friend.jpg",
 		options: ["友達", "家族", "兄弟", "姉妹"],
+		yomikata: ["ともだち", "かぞく", "きょうだい", "しまい"],
 		correctAnswer: "友達"
 	},
 	{
-		id: 18,
-		image: "Cousin.jpg",
-		options: ["いとこ", "きょうだい", "おば", "おじ"],
-		correctAnswer: "いとこ"
+		id: 16,
+		image: uncle,
+		options: ["叔父", "叔母", "兄弟", "姉妹"],
+		yomikata: ["おじ", "おば", "きょうだい", "しまい"],
+		correctAnswer: "叔父"
 	},
 	{
-		id: 19,
-		image: "MotherInLaw.jpg",
-		options: ["お母さん", "お義母さん", "お父さん", "お義父さん"],
-		correctAnswer: "お義母さん"
-	},
-	{
-		id: 20,
-		image: "FatherInLaw.jpg",
-		options: ["お父さん", "お義父さん", "お母さん", "お義母さん"],
-		correctAnswer: "お義父さん"
+		id: 17,
+		image: aunt,
+		options: ["叔父", "叔母", "兄弟", "姉妹"],
+		yomikata: ["おじ", "おば", "きょうだい", "しまい"],
+		correctAnswer: "叔母"
 	}
 ];
 
 export const intermediateQuestions: intermediate[] = [
 	{
 		id: 1,
-		kanji: "父",
-		hiragana: "ちち"
+		question: "The kanji for father is 父 and it has 4 strokes.",
+		correctAnswer: true
 	},
 	{
 		id: 2,
-		kanji: "母",
-		hiragana: "はは"
+		question: "The kanji for mother is 母 and it has 5 strokes.",
+		correctAnswer: true
 	},
 	{
 		id: 3,
-		kanji: "兄",
-		hiragana: "あに"
+		question: "The kanji for child is 子 and it has 3 strokes.",
+		correctAnswer: true
 	},
 	{
 		id: 4,
-		kanji: "妹",
-		hiragana: "いもうと"
+		question: "The kanji for older brother is 兄 and it has 6 strokes.",
+		correctAnswer: false
 	},
 	{
 		id: 5,
-		kanji: "祖父",
-		hiragana: "そふ"
+		question: "The kanji for older sister is 姉 and it has 8 strokes.",
+		correctAnswer: true
 	},
 	{
 		id: 6,
-		kanji: "祖母",
-		hiragana: "そぼ"
+		question: "The kanji for younger brother is 弟 and it has 7 strokes.",
+		correctAnswer: true
 	},
 	{
 		id: 7,
-		kanji: "娘",
-		hiragana: "むすめ"
+		question: "The kanji for younger sister is 妹 and it has 8 strokes.",
+		correctAnswer: true
 	},
 	{
 		id: 8,
-		kanji: "息子",
-		hiragana: "むすこ"
+		question: "The kanji for husband is 夫 and it has 4 strokes.",
+		correctAnswer: true
 	},
 	{
 		id: 9,
-		kanji: "叔母",
-		hiragana: "おば"
+		question: "The kanji for wife is 妻 and it has 8 strokes.",
+		correctAnswer: false
 	},
 	{
 		id: 10,
-		kanji: "叔父",
-		hiragana: "おじ"
+		question: "The kanji for son is 息 and it has 10 strokes.",
+		correctAnswer: false
 	},
 	{
 		id: 11,
-		kanji: "姪",
-		hiragana: "めい"
+		question: "The kanji for daughter is 娘 and it has 10 strokes.",
+		correctAnswer: true
 	},
 	{
 		id: 12,
-		kanji: "甥",
-		hiragana: "おい"
+		question: "The kanji for grandfather is 祖父 and it has 17 strokes.",
+		correctAnswer: true
 	},
 	{
 		id: 13,
-		kanji: "彼女",
-		hiragana: "かのじょ"
+		question: "The kanji for grandmother is 祖母 and it has 18 strokes.",
+		correctAnswer: true
 	},
 	{
 		id: 14,
-		kanji: "彼氏",
-		hiragana: "かれし"
+		question: "The kanji for uncle is 叔父 and it has 10 strokes.",
+		correctAnswer: false
 	},
 	{
 		id: 15,
-		kanji: "夫",
-		hiragana: "おっと"
+		question: "The kanji for aunt is 叔母 and it has 11 strokes.",
+		correctAnswer: false
 	},
 	{
 		id: 16,
-		kanji: "妻",
-		hiragana: "つま"
+		question: "The kanji for cousin is いとこ and it has 7 strokes.",
+		correctAnswer: false
 	},
 	{
 		id: 17,
-		kanji: "友達",
-		hiragana: "ともだち"
+		question: "The kanji for nephew is 甥 and it has 12 strokes.",
+		correctAnswer: true
 	},
 	{
 		id: 18,
-		kanji: "隣人",
-		hiragana: "りんじん"
+		question: "The kanji for niece is 姪 and it has 15 strokes.",
+		correctAnswer: true
 	},
 	{
 		id: 19,
-		kanji: "お爺さん",
-		hiragana: "おじいさん"
+		question: "The kanji for friend is 友 and it has 4 strokes.",
+		correctAnswer: true
 	},
 	{
 		id: 20,
-		kanji: "隣人",
-		hiragana: "りんじん"
-	},
-	{
-		id: 21,
-		kanji: "お爺さん",
-		hiragana: "おじいさん"
-	},
-	{
-		id: 22,
-		kanji: "お婆さん",
-		hiragana: "おばあさん"
-	},
-	{
-		id: 23,
-		kanji: "娘婿",
-		hiragana: "むすめむこ"
-	},
-	{
-		id: 24,
-		kanji: "義理の父",
-		hiragana: "ぎりのちち"
-	},
-	{
-		id: 25,
-		kanji: "義理の母",
-		hiragana: "ぎりのはは"
-	},
-	{
-		id: 26,
-		kanji: "義理の兄",
-		hiragana: "ぎりのあに"
-	},
-	{
-		id: 27,
-		kanji: "義理の妹",
-		hiragana: "ぎりのいもうと"
-	},
-	{
-		id: 28,
-		kanji: "孫",
-		hiragana: "まご"
-	},
-	{
-		id: 29,
-		kanji: "親戚",
-		hiragana: "しんせき"
-	},
-	{
-		id: 30,
-		kanji: "叔父",
-		hiragana: "おじ"
-	},
-	{
-		id: 31,
-		kanji: "叔母",
-		hiragana: "おば"
-	},
-	{
-		id: 32,
-		kanji: "従兄弟",
-		hiragana: "いとこ"
-	},
-	{
-		id: 33,
-		kanji: "従姉妹",
-		hiragana: "いとこ"
-	},
-	{
-		id: 34,
-		kanji: "姉妹",
-		hiragana: "しまい"
-	},
-	{
-		id: 35,
-		kanji: "妹弟",
-		hiragana: "きょうだい"
-	},
-	{
-		id: 36,
-		kanji: "親友",
-		hiragana: "しんゆう"
-	},
-	{
-		id: 37,
-		kanji: "親子",
-		hiragana: "おやこ"
-	},
-	{
-		id: 38,
-		kanji: "義理の姉",
-		hiragana: "ぎりのあね"
-	},
-	{
-		id: 39,
-		kanji: "義理の妹",
-		hiragana: "ぎりのいもうと"
-	},
-	{
-		id: 40,
-		kanji: "家族",
-		hiragana: "かぞく"
+		question: "The kanji for love is 愛 and it has 13 strokes.",
+		correctAnswer: true
 	}
 ];
 

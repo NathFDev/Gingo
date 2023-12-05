@@ -1,18 +1,48 @@
 <script lang="ts">
-	import { pickQuestion, handleAnswer, resetButton } from "$lib/utils/helper.ts";
+	import HandlingButton from "$lib/components/HandlingButton.svelte";
+	import { addScore, addCount } from "$lib/stores/score";
+	import type { beginner } from "$lib/utils/data";
+	import { fetchQuestion, toUnicode } from "$lib/utils/helper";
 	import type { PageData } from "./$types";
 
-	const handleClick = (e: Event) => {
-		if (!e.target.classList.contains("btn")) return;
-		handleAnswer(e, question);
-		setTimeout(() => {
-			question = pickQuestion(data.questions);
-			resetButton(e);
-		}, 1000);
+	export let data: PageData;
+	let question: beginner = data.question;
+	let answer: Element;
+
+	const handleAnswer = (e: MouseEvent) => {
+		const target = e.target! as Element;
+		if (!target.classList.contains("btn")) return;
+
+		if (answer) {
+			answer.classList.add("bg-sp-dark-purple");
+			answer.classList.remove("btn-secondary");
+		}
+		answer = target;
+
+		target.classList.remove("bg-sp-dark-purple");
+		target.classList.add("btn-secondary");
 	};
 
-	export let data: PageData;
-	let question = pickQuestion(data.questions);
+	const handleNext = async () => {
+		addCount();
+		const res = await fetch("/questions", {
+			method: "POST",
+			body: JSON.stringify({
+				answer: toUnicode(answer.textContent!.trim()),
+				correctAnswer: toUnicode(question.correctAnswer.trim())
+			}),
+			headers: {
+				"content-type": "application/json"
+			}
+		});
+
+		question = await fetchQuestion("beginner");
+
+		const correct = await res.json();
+
+		if (!correct) return;
+		addScore();
+	};
 </script>
 
 <div class="container mx-auto my-8">
@@ -23,15 +53,15 @@
 		</figure>
 		<div
 			class="flex flex-col justify-between mx-auto my-2 items-center gap-6 p-4"
-			on:click={handleClick}
+			on:click={handleAnswer}
 		>
-			{#each question.options as option}
-				<button
-					id={question.id}
-					key={question.id}
-					class="btn btnx bg-sp-dark-purple btn-wide text-white text-xl">{option}</button
-				>
+			{#each question.options as option (option + question.id)}
+				<button id={String(question.id)} class="btn bg-sp-dark-purple btn-wide text-white text-xl">
+					{option}
+				</button>
 			{/each}
 		</div>
 	</div>
 </div>
+
+<HandlingButton handler={handleNext} />

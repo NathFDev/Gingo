@@ -1,9 +1,11 @@
-import { expertQuestions } from "$lib/utils/data";
-import { fetchQuestions } from "$lib/utils/helper";
+import type { expert } from "$lib/utils/data";
+import type { PageLoad } from "./$types";
 
-export function load() {
-	const questions = fetchQuestions(expertQuestions);
+export const load: PageLoad = async ({ fetch }) => {
+	const res = await fetch("/questions?expert");
+	const question = (await res.json()) as expert;
+
 	return {
-		questions
+		question
 	};
-}
+};

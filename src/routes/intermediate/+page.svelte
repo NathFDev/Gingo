@@ -1,98 +1,60 @@
 <script lang="ts">
-	import { pickQuestion } from "$lib/utils/helper.ts";
+	import HandlingButton from "$lib/components/HandlingButton.svelte";
+	import { addScore, addCount } from "$lib/stores/score";
+	import type { intermediate } from "$lib/utils/data";
+	import { fetchQuestion } from "$lib/utils/helper";
 	import type { PageData } from "./$types";
 
 	export let data: PageData;
+	let question: intermediate = data.question;
+	let answer: Element;
 
-	function createBatch() {
-		const leftArr = [];
-		const rightArr = [];
+	const handleAnswer = (e: MouseEvent) => {
+		const target = e.target! as Element;
+		if (!target.classList.contains("btn")) return;
 
-		for (let i = 0; i < 4; i++) {
-			const pair = pickQuestion(data.questions);
-			leftArr.push(pair);
-			rightArr.push(pair);
+		if (answer) {
+			answer.classList.remove("border-solid", "border-4", "border-[#9400ff]");
 		}
+		answer = target;
 
-		leftArr.sort(() => Math.random() - 0.5);
-		rightArr.sort(() => Math.random() - 0.5);
+		target.classList.add("border-solid", "border-4", "border-[#9400ff]");
+	};
 
-		return [leftArr, rightArr];
-	}
-
-	let [kanjiOption, hiraganaOption] = createBatch();
-	let kanji;
-	let hiragana;
-	let answeredQuestions = [];
-	let answeredCount = 0;
-
-	const handleClick = (e: Event) => {
-		if (!e.target.classList.contains("btn")) return;
-		if (e.target.classList.contains("kanji")) kanji = e.target;
-		else hiragana = e.target;
-		if (!kanji || !hiragana) return;
-		if (kanji.id === hiragana.id) {
-			kanji.style.visibility = "hidden";
-			hiragana.style.visibility = "hidden";
-			answeredQuestions.push(kanji);
-			answeredQuestions.push(hiragana);
-			answeredCount++;
-			kanji = "";
-			hiragana = "";
-		} else {
-			kanji.classList.remove("bg-sp-dark-purple");
-			kanji.classList.add("btn-error");
-			hiragana.classList.remove("bg-sp-dark-purple");
-			hiragana.classList.add("btn-error");
-			setTimeout(() => {
-				kanji.classList.add("bg-sp-dark-purple");
-				kanji.classList.remove("btn-error");
-				hiragana.classList.add("bg-sp-dark-purple");
-				hiragana.classList.remove("btn-error");
-				kanji = "";
-				hiragana = "";
-			}, 500);
-		}
-		console.log(answeredCount);
-		if (answeredCount % 4 === 0 && answeredCount > 0) {
-			[kanjiOption, hiraganaOption] = createBatch();
-			answeredCount = 0;
-			for (let i = 0; i < answeredQuestions.length; i++) {
-				answeredQuestions[i].style.visibility = "visible";
+	const handleNext = async () => {
+		addCount();
+		const res = await fetch("/questions", {
+			method: "POST",
+			body: JSON.stringify({
+				answer:
+					answer.textContent!.trim().charAt(0).toLowerCase() + answer.textContent!.trim().slice(1),
+				correctAnswer: String(question.correctAnswer).trim()
+			}),
+			headers: {
+				"content-type": "application/json"
 			}
-		}
+		});
+
+		question = await fetchQuestion("intermediate");
+
+		const correct = await res.json();
+
+		if (!correct) return;
+		addScore();
 	};
 </script>
 
 <div class="container mx-auto my-8">
-	<h1 class="text-center text-2xl font-bold mb-8">Which one is the correct pair?</h1>
-	<div
-		class="card lg:card-side bg-base-300 shadow-xl max-w-3xl mx-auto flex justify-between items-center gap-6"
-	>
-		<div
-			class="flex flex-col justify-between mx-auto my-2 items-center gap-6 p-4"
-			on:click={handleClick}
-		>
-			{#each kanjiOption as option}
-				<button
-					key={option.id}
-					id={option.id}
-					class="kanji btn bg-sp-dark-purple btn-wide text-white text-xl">{option.kanji}</button
-				>
-			{/each}
-		</div>
-		<div
-			class="flex flex-col justify-between mx-auto my-2 items-center gap-6 p-4"
-			on:click={handleClick}
-		>
-			{#each hiraganaOption as option}
-				<button
-					key={option.id}
-					id={option.id}
-					class="hiragana btn bg-sp-dark-purple btn-wide text-white text-xl"
-					>{option.hiragana}</button
-				>
-			{/each}
+	<h1 class="text-center text-2xl font-bold mb-8">Which one is correct statement?</h1>
+	<div class="card w-96 bg-base-300 text-neutral-content shadow-xl mx-auto">
+		<div class="card-body">
+			<h2 class="text-2xl font-bold mb-8 text-center align-middle">{question.question}</h2>
+			<div class="flex flex-col gap-4 justify-center items-center" on:click={handleAnswer}>
+				<button class="btn btn-wide btn-success text-xl">True</button>
+				<button class="btn btn-wide btn-error text-xl">False</button>
+			</div>
 		</div>
 	</div>
 </div>
+
+<HandlingButton handler={handleNext} />

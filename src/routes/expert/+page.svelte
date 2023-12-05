@@ -1,34 +1,67 @@
 <script lang="ts">
-	import { pickQuestion, handleAnswer, resetButton } from "$lib/utils/helper.ts";
+	import HandlingButton from "$lib/components/HandlingButton.svelte";
+	import { addScore, addCount } from "$lib/stores/score";
+	import type { expert } from "$lib/utils/data";
+	import { fetchQuestion, toUnicode } from "$lib/utils/helper";
 	import type { PageData } from "./$types";
 
-	const handleClick = (e: Event) => {
-		if (!e.target.classList.contains("btn")) return;
-		handleAnswer(e, question);
-		setTimeout(() => {
-			question = pickQuestion(data.questions);
-			resetButton(e);
-		}, 1000);
+	export let data: PageData;
+	let question: expert = data.question;
+	let answer: Element;
+
+	const handleAnswer = (e: MouseEvent) => {
+		const target = e.target! as Element;
+		if (!target.classList.contains("btn")) return;
+
+		if (answer) {
+			answer.classList.add("bg-sp-dark-purple");
+			answer.classList.remove("btn-secondary");
+		}
+		answer = target;
+
+		target.classList.remove("bg-sp-dark-purple");
+		target.classList.add("btn-secondary");
 	};
 
-	export let data: PageData;
-	let question = pickQuestion(data.questions);
+	const handleNext = async () => {
+		addCount();
+		const res = await fetch("/questions", {
+			method: "POST",
+			body: JSON.stringify({
+				answer: toUnicode(answer.textContent!.trim()),
+				correctAnswer: toUnicode(question.correctAnswer.trim())
+			}),
+			headers: {
+				"content-type": "application/json"
+			}
+		});
+
+		question = await fetchQuestion("expert");
+
+		const correct = await res.json();
+
+		if (!correct) return;
+		addScore();
+	};
 </script>
 
 <div class="container mx-auto my-8">
-	<h1 class="text-center text-2xl font-bold mb-8">Which kanji is correct for following image?</h1>
+	<h1 class="text-center text-2xl font-bold mb-8">Which one is correct based on the text?</h1>
 	<div class="mockup-window border bg-base-300 max-w-3xl mx-auto my-8">
 		<div class="px-4 py-4 bg-base-200">{question.text}</div>
 	</div>
 	<div class="card lg:card-side bg-base-300 shadow-xl max-w-3xl mx-auto">
-		<div class="grid grid-cols-2 gap-8 mx-auto p-4" on:click={handleClick}>
-			{#each question.options as option}
+		<div class="grid grid-cols-2 gap-8 mx-auto p-4" on:click={handleAnswer}>
+			{#each question.options as option (option + question.id)}
 				<button
 					class="btn bg-sp-dark-purple btn-wide btnx text-white text-xl"
-					id={question.id}
-					key={question.id}>{option}</button
+					id={String(question.id)}
 				>
+					{option}
+				</button>
 			{/each}
 		</div>
 	</div>
 </div>
+
+<HandlingButton handler={handleNext} />

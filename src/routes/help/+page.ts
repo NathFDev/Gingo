@@ -13,7 +13,7 @@ export function load() {
 		intermediate: {
 			title: "Intermediate",
 			content:
-				"Once you have mastered the basics, you can move on to the Intermediate Level, where you will learn the Japanese characters: kanji. Kanji are complex symbols that represent meanings and sounds. You will be shown a list of kanji on the left and a list of corresponding hiragana on the right. Your task is to match the kanji with the correct hiragana. Upon making your selections, the questions will dynamically change, ensuring a varied learning experience. Additionally, the correct answers will be displayed after your choices. You can also see your score and progress on the top right corner. Challenge yourself and learn more kanji!"
+				"After you have learned the basics of kanji, you can advance to the Intermediate Level, where you will test your knowledge of the Japanese characters. Kanji are complex symbols that represent meanings and sounds. You will be shown a kanji and a statement about its meaning and storkes count. Your task is to decide whether the statement is true or false. Upon making your selection, the question will dynamically change, ensuring a varied learning experience. Additionally, the correct answer will be displayed after your choice. Challenge yourself and learn more kanji!"
 		},
 		expert: {
 			title: "Expert",

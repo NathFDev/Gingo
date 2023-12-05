@@ -1,0 +1,23 @@
+{
+	"name": "Gingo | A Simple Way to Learn Japanese",
+	"version": "1.0.0",
+	"manifest_version": 2,
+	"short_name": "Gingo",
+	"start_url": "/",
+	"theme_color": "#0f172a",
+	"scope": "./",
+	"display": "standalone",
+	"icons": [
+		{
+			"src": "icon-512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		},
+		{
+			"src": "icon-1024.png",
+			"sizes": "1024x1024",
+			"type": "image/png"
+		}
+	],
+	"description": "Web app that let you learn Japanese in interactive way"
+}

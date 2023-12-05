@@ -1,8 +1,11 @@
-import { intermediateQuestions } from "$lib/utils/data";
+import type { intermediate } from "$lib/utils/data";
+import type { PageLoad } from "./$types";
 
-export function load() {
-	const questions = intermediateQuestions.slice();
+export const load: PageLoad = async ({ fetch }) => {
+	const res = await fetch("/questions?intermediate");
+	const question = (await res.json()) as intermediate;
+
 	return {
-		questions
+		question
 	};
-}
+};
