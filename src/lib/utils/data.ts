@@ -8,6 +8,13 @@ import grandfather from "$lib/assets/images/grandfather.jpeg";
 import sister from "$lib/assets/images/sister.jpeg";
 import mother from "$lib/assets/images/mother.jpeg";
 import brother from "$lib/assets/images/brother.jpeg";
+import girlfriend from "$lib/assets/images/girlfriend.jpeg";
+import boyfriend from "$lib/assets/images/boyfriend.jpeg";
+import friend from "$lib/assets/images/friend.jpeg";
+import wife from "$lib/assets/images/wife.jpeg";
+import husband from "$lib/assets/images/husband.jpeg";
+import nephew from "$lib/assets/images/nephew.jpeg";
+import niece from "$lib/assets/images/niece.jpeg";
 
 export interface beginner {
 	id: number;
@@ -90,49 +97,49 @@ export const beginnerQuestions: beginner[] = [
 	},
 	{
 		id: 9,
-		image: "Niece.jpg",
+		image: niece,
 		options: ["姪", "甥", "妹", "兄"],
 		yomikata: ["めい", "おい", "いもうと", "あに"],
 		correctAnswer: "姪"
 	},
 	{
 		id: 10,
-		image: "Nephew.jpg",
+		image: nephew,
 		options: ["甥", "姪", "弟", "妹"],
 		yomikata: ["おい", "めい", "おとうと", "いもうと"],
 		correctAnswer: "甥"
 	},
 	{
 		id: 11,
-		image: "Girlfriend.jpg",
+		image: girlfriend,
 		options: ["彼女", "彼氏", "妹", "兄"],
 		yomikata: ["かのじょ", "かれし", "いもうと", "あに"],
 		correctAnswer: "彼女"
 	},
 	{
 		id: 12,
-		image: "Boyfriend.jpg",
+		image: boyfriend,
 		options: ["彼氏", "彼女", "姉", "弟"],
 		yomikata: ["かれし", "かのじょ", "あね", "おとうと"],
 		correctAnswer: "彼氏"
 	},
 	{
 		id: 13,
-		image: "Husband.jpg",
+		image: husband,
 		options: ["妻", "夫", "姉", "弟"],
 		yomikata: ["つま", "おっと", "あね", "おとうと"],
 		correctAnswer: "夫"
 	},
 	{
 		id: 14,
-		image: "Wife.jpg",
+		image: wife,
 		options: ["夫", "妻", "兄", "妹"],
 		yomikata: ["おっと", "つま", "あに", "いもうと"],
 		correctAnswer: "妻"
 	},
 	{
 		id: 15,
-		image: "Friend.jpg",
+		image: friend,
 		options: ["友達", "家族", "兄弟", "姉妹"],
 		yomikata: ["ともだち", "かぞく", "きょうだい", "しまい"],
 		correctAnswer: "友達"
