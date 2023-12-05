@@ -8,6 +8,7 @@
 	export let data: PageData;
 	let question: expert = data.question;
 	let answer: Element;
+	let loading: boolean = false;
 
 	const handleAnswer = (e: MouseEvent) => {
 		const target = e.target! as Element;
@@ -25,6 +26,7 @@
 
 	const handleNext = async () => {
 		addCount();
+		loading = true;
 		const res = await fetch("/questions", {
 			method: "POST",
 			body: JSON.stringify({
@@ -37,6 +39,7 @@
 		});
 
 		question = await fetchQuestion("expert");
+		loading = false;
 
 		const correct = await res.json();
 
@@ -47,21 +50,27 @@
 
 <div class="container mx-auto my-8">
 	<h1 class="text-center text-2xl font-bold mb-8">Which one is correct based on the text?</h1>
-	<div class="mockup-window border bg-base-300 max-w-3xl mx-auto my-8">
-		<div class="px-4 py-4 bg-base-200">{question.text}</div>
-	</div>
-	<div class="card lg:card-side bg-base-300 shadow-xl max-w-3xl mx-auto">
-		<div class="grid grid-cols-2 gap-8 mx-auto p-4" on:click={handleAnswer}>
-			{#each question.options as option (option + question.id)}
-				<button
-					class="btn bg-sp-dark-purple btn-wide btnx text-white text-xl"
-					id={String(question.id)}
-				>
-					{option}
-				</button>
-			{/each}
+	{#if loading}
+		<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+			<span class="loading loading-spinner loading-lg loading-primary"></span>
 		</div>
-	</div>
+	{:else}
+		<div class="mockup-window border bg-base-300 max-w-3xl mx-auto my-8">
+			<div class="px-4 py-4 bg-base-200">{question.text}</div>
+		</div>
+		<div class="card lg:card-side bg-base-300 shadow-xl max-w-3xl mx-auto">
+			<div class="grid grid-cols-2 gap-8 mx-auto p-4" on:click={handleAnswer}>
+				{#each question.options as option (option + question.id)}
+					<button
+						class="btn bg-sp-dark-purple btn-wide btnx text-white text-xl"
+						id={String(question.id)}
+					>
+						{option}
+					</button>
+				{/each}
+			</div>
+		</div>
+	{/if}
 </div>
 
 <HandlingButton handler={handleNext} />

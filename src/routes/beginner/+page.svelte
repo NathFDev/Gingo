@@ -8,6 +8,7 @@
 	export let data: PageData;
 	let question: beginner = data.question;
 	let answer: Element;
+	let loading: boolean = false;
 
 	const handleAnswer = (e: MouseEvent) => {
 		const target = e.target! as Element;
@@ -25,6 +26,7 @@
 
 	const handleNext = async () => {
 		addCount();
+		loading = true;
 		const res = await fetch("/questions", {
 			method: "POST",
 			body: JSON.stringify({
@@ -37,6 +39,7 @@
 		});
 
 		question = await fetchQuestion("beginner");
+		loading = false;
 
 		const correct = await res.json();
 
@@ -46,22 +49,34 @@
 </script>
 
 <div class="container mx-auto my-8">
-	<h1 class="text-center text-2xl font-bold mb-8">Which kanji is correct for following image?</h1>
-	<div class="card lg:card-side bg-base-300 shadow-xl max-w-3xl mx-auto">
-		<figure>
-			<img class="max-h-80" src={question.image} alt="Question" />
-		</figure>
-		<div
-			class="flex flex-col justify-between mx-auto my-2 items-center gap-6 p-4"
-			on:click={handleAnswer}
-		>
-			{#each question.options as option (option + question.id)}
-				<button id={String(question.id)} class="btn bg-sp-dark-purple btn-wide text-white text-xl">
-					{option}
-				</button>
-			{/each}
+	<h1 class="text-center text-2xl font-bold mb-8">
+		Which kanji is correct for the following image?
+	</h1>
+	{#if loading}
+		<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+			<span class="loading loading-spinner loading-lg loading-primary"></span>
 		</div>
-	</div>
+	{:else}
+		<h1 class="text-center text-2xl font-bold mb-8">Which kanji is correct for following image?</h1>
+		<div class="card lg:card-side bg-base-300 shadow-xl max-w-3xl mx-auto">
+			<figure>
+				<img class="max-h-80" src={question.image} alt="Question" />
+			</figure>
+			<div
+				class="flex flex-col justify-between mx-auto my-2 items-center gap-6 p-4"
+				on:click={handleAnswer}
+			>
+				{#each question.options as option (option + question.id)}
+					<button
+						id={String(question.id)}
+						class="btn bg-sp-dark-purple btn-wide text-white text-xl"
+					>
+						{option}
+					</button>
+				{/each}
+			</div>
+		</div>
+	{/if}
 </div>
 
 <HandlingButton handler={handleNext} />
