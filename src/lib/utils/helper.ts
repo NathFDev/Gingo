@@ -1,5 +1,18 @@
-function getRanNum(num = 20) {
+function getRanNum(num: number) {
 	return Math.floor(Math.random() * num);
+}
+
+export function fetchQuestions<T>(arr: Array<T>): Array<T> {
+	const copyArr = arr.slice();
+	const newArr = [];
+
+	for (let i = 0; i < 10; i++) {
+		const ranNum = getRanNum(copyArr.length);
+		newArr.push(copyArr[ranNum]);
+		copyArr.splice(ranNum, 1);
+	}
+
+	return newArr;
 }
 
 export function pickQuestion<T>(arr: Array<T>): T {

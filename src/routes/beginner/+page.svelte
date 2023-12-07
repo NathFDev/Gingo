@@ -8,8 +8,10 @@
 
 	export let data: PageData;
 	let question: beginner = data.question;
-	let answer: Element;
+	let answer: Element | null;
 	let loading: boolean = false;
+
+	$: answered = !!answer as boolean;
 
 	const handleAnswer = (e: MouseEvent) => {
 		const target = e.target! as Element;
@@ -31,7 +33,7 @@
 		const res = await fetch("/questions", {
 			method: "POST",
 			body: JSON.stringify({
-				answer: toUnicode(answer.textContent!.split(" ")[0].trim()),
+				answer: toUnicode(answer!.textContent!.split(" ")[0].trim()),
 				correctAnswer: toUnicode(question.correctAnswer.trim())
 			}),
 			headers: {
@@ -39,6 +41,7 @@
 			}
 		});
 
+		answer = null;
 		question = await fetchQuestion("beginner");
 		loading = false;
 
@@ -78,4 +81,4 @@
 	{/if}
 </div>
 
-<HandlingButton handler={handleNext} />
+<HandlingButton handler={handleNext} {answered} />

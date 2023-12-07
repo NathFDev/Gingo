@@ -1,5 +1,6 @@
 <script lang="ts">
 	export let handler: () => void;
+	export let answered: boolean;
 </script>
 
 <footer
@@ -7,7 +8,11 @@
 >
 	<div class="flex justify-between w-full px-16">
 		<a href="/result" class="btn btn-large btn-wide btn-warning btn-outline text-3xl"> Finish </a>
-		<button on:click={handler} class="btn btn-large btn-wide btn-primary btn-outline text-3xl">
+		<button
+			on:click={handler}
+			disabled={!answered}
+			class="btn btn-large btn-wide btn-primary btn-outline text-3xl"
+		>
 			Next
 		</button>
 	</div>

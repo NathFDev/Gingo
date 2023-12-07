@@ -3,7 +3,9 @@
 
 	export let data: PageData;
 
-	const totalScore = Math.round((data.currentScore / data.currentCount) * 100);
+	const noAnswer = data.currentCount === 0;
+
+	const totalScore = noAnswer ? 0 : Math.round((data.currentScore / data.currentCount) * 100);
 </script>
 
 <div class="container mx-auto my-8 flex flex-col justify-center items-center">
@@ -14,8 +16,12 @@
 	>
 		{totalScore}%
 	</div>
-	<h1 class="text-white text-3xl font-bold mb-8">
-		You've answered correctly {data.currentScore} out of {data.currentCount}
-	</h1>
+	{#if noAnswer}
+		<h1 class="text-white text-3xl font-bold mb-8">You haven't answer any question yet</h1>
+	{:else}
+		<h1 class="text-white text-3xl font-bold mb-8">
+			You've answered correctly {data.currentScore} out of {data.currentCount}
+		</h1>
+	{/if}
 	<a href="/" class="btn btn-neutral text-neutral-content btn-wide btn-large text-xl">Home</a>
 </div>

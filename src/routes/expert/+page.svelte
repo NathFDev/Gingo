@@ -8,8 +8,10 @@
 
 	export let data: PageData;
 	let question: expert = data.question;
-	let answer: Element;
+	let answer: Element | null;
 	let loading: boolean = false;
+
+	$: answered = !!answer as boolean;
 
 	const handleAnswer = (e: MouseEvent) => {
 		const target = e.target! as Element;
@@ -31,7 +33,7 @@
 		const res = await fetch("/questions", {
 			method: "POST",
 			body: JSON.stringify({
-				answer: toUnicode(answer.textContent!.trim()),
+				answer: toUnicode(answer!.textContent!.trim()),
 				correctAnswer: toUnicode(question.correctAnswer.trim())
 			}),
 			headers: {
@@ -39,6 +41,7 @@
 			}
 		});
 
+		answer = null;
 		question = await fetchQuestion("expert");
 		loading = false;
 
@@ -72,4 +75,4 @@
 	{/if}
 </div>
 
-<HandlingButton handler={handleNext} />
+<HandlingButton handler={handleNext} {answered} />
