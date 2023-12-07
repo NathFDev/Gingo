@@ -16,11 +16,15 @@ import husband from "$lib/assets/images/husband.jpeg";
 import nephew from "$lib/assets/images/nephew.jpeg";
 import niece from "$lib/assets/images/niece.jpeg";
 
+interface option {
+	option: string;
+	yomikata: string;
+}
+
 export interface beginner {
 	id: number;
 	image: string;
-	options: string[];
-	yomikata: string[];
+	options: option[];
 	correctAnswer: string;
 }
 
@@ -41,121 +45,188 @@ export const beginnerQuestions: beginner[] = [
 	{
 		id: 1,
 		image: father,
-		options: ["母", "父", "妹", "兄"],
-		yomikata: ["はは", "ちち", "いもうと", "あに"],
+		options: [
+			{ option: "母", yomikata: "はは" },
+			{ option: "父", yomikata: "ちち" },
+			{ option: "妹", yomikata: "いもうと" },
+			{ option: "兄", yomikata: "あに" }
+		],
 		correctAnswer: "父"
 	},
 	{
 		id: 2,
 		image: mother,
-		options: ["弟", "妹", "父", "母"],
-		yomikata: ["おとうと", "いもうと", "ちち", "はは"],
+		options: [
+			{ option: "弟", yomikata: "おとうと" },
+			{ option: "妹", yomikata: "いもうと" },
+			{ option: "父", yomikata: "ちち" },
+			{ option: "母", yomikata: "はは" }
+		],
 		correctAnswer: "母"
 	},
 	{
 		id: 3,
 		image: brother,
-		options: ["兄", "姉", "父", "母"],
-		yomikata: ["あに", "あね", "ちち", "はは"],
+		options: [
+			{ option: "兄", yomikata: "あに" },
+			{ option: "姉", yomikata: "あね" },
+			{ option: "父", yomikata: "ちち" },
+			{ option: "母", yomikata: "はは" }
+		],
 		correctAnswer: "兄"
 	},
 	{
 		id: 4,
 		image: sister,
-		options: ["妹", "弟", "母", "父"],
-		yomikata: ["いもうと", "おとうと", "はは", "ちち"],
+		options: [
+			{ option: "妹", yomikata: "いもうと" },
+			{ option: "弟", yomikata: "おとうと" },
+			{ option: "母", yomikata: "はは" },
+			{ option: "父", yomikata: "ちち" }
+		],
 		correctAnswer: "妹"
 	},
 	{
 		id: 5,
 		image: grandfather,
-		options: ["祖母", "祖父", "母", "父"],
-		yomikata: ["そぼ", "そふ", "はは", "ちち"],
+		options: [
+			{ option: "祖母", yomikata: "そぼ" },
+			{ option: "祖父", yomikata: "そふ" },
+			{ option: "母", yomikata: "はは" },
+			{ option: "父", yomikata: "ちち" }
+		],
 		correctAnswer: "祖父"
 	},
 	{
 		id: 6,
 		image: grandmother,
-		options: ["祖母", "祖父", "母", "父"],
-		yomikata: ["そぼ", "そふ", "はは", "ちち"],
+		options: [
+			{ option: "祖母", yomikata: "そぼ" },
+			{ option: "祖父", yomikata: "そふ" },
+			{ option: "母", yomikata: "はは" },
+			{ option: "父", yomikata: "ちち" }
+		],
 		correctAnswer: "祖母"
 	},
-
 	{
 		id: 7,
 		image: daughter,
-		options: ["息子", "娘", "父", "母"],
-		yomikata: ["むすこ", "むすめ", "ちち", "はは"],
+		options: [
+			{ option: "息子", yomikata: "むすこ" },
+			{ option: "娘", yomikata: "むすめ" },
+			{ option: "父", yomikata: "ちち" },
+			{ option: "母", yomikata: "はは" }
+		],
 		correctAnswer: "娘"
 	},
 	{
 		id: 8,
 		image: son,
-		options: ["娘", "息子", "姉", "弟"],
-		yomikata: ["むすめ", "むすこ", "あね", "おとうと"],
+		options: [
+			{ option: "娘", yomikata: "むすめ" },
+			{ option: "息子", yomikata: "むすこ" },
+			{ option: "姉", yomikata: "あね" },
+			{ option: "弟", yomikata: "おとうと" }
+		],
 		correctAnswer: "息子"
 	},
 	{
 		id: 9,
 		image: niece,
-		options: ["姪", "甥", "妹", "兄"],
-		yomikata: ["めい", "おい", "いもうと", "あに"],
+		options: [
+			{ option: "姪", yomikata: "めい" },
+			{ option: "甥", yomikata: "おい" },
+			{ option: "妹", yomikata: "いもうと" },
+			{ option: "兄", yomikata: "あに" }
+		],
 		correctAnswer: "姪"
 	},
 	{
 		id: 10,
 		image: nephew,
-		options: ["甥", "姪", "弟", "妹"],
-		yomikata: ["おい", "めい", "おとうと", "いもうと"],
+		options: [
+			{ option: "甥", yomikata: "おい" },
+			{ option: "姪", yomikata: "めい" },
+			{ option: "弟", yomikata: "おとうと" },
+			{ option: "妹", yomikata: "いもうと" }
+		],
 		correctAnswer: "甥"
 	},
 	{
 		id: 11,
 		image: girlfriend,
-		options: ["彼女", "彼氏", "妹", "兄"],
-		yomikata: ["かのじょ", "かれし", "いもうと", "あに"],
+		options: [
+			{ option: "彼女", yomikata: "かのじょ" },
+			{ option: "彼氏", yomikata: "かれし" },
+			{ option: "妹", yomikata: "いもうと" },
+			{ option: "兄", yomikata: "あに" }
+		],
 		correctAnswer: "彼女"
 	},
 	{
 		id: 12,
 		image: boyfriend,
-		options: ["彼氏", "彼女", "姉", "弟"],
-		yomikata: ["かれし", "かのじょ", "あね", "おとうと"],
+		options: [
+			{ option: "彼氏", yomikata: "かれし" },
+			{ option: "彼女", yomikata: "かのじょ" },
+			{ option: "姉", yomikata: "あね" },
+			{ option: "弟", yomikata: "おとうと" }
+		],
 		correctAnswer: "彼氏"
 	},
 	{
 		id: 13,
 		image: husband,
-		options: ["妻", "夫", "姉", "弟"],
-		yomikata: ["つま", "おっと", "あね", "おとうと"],
+		options: [
+			{ option: "妻", yomikata: "つま" },
+			{ option: "夫", yomikata: "おっと" },
+			{ option: "姉", yomikata: "あね" },
+			{ option: "弟", yomikata: "おとうと" }
+		],
 		correctAnswer: "夫"
 	},
 	{
 		id: 14,
 		image: wife,
-		options: ["夫", "妻", "兄", "妹"],
-		yomikata: ["おっと", "つま", "あに", "いもうと"],
+		options: [
+			{ option: "夫", yomikata: "おっと" },
+			{ option: "妻", yomikata: "つま" },
+			{ option: "兄", yomikata: "あに" },
+			{ option: "妹", yomikata: "いもうと" }
+		],
 		correctAnswer: "妻"
 	},
 	{
 		id: 15,
 		image: friend,
-		options: ["友達", "家族", "兄弟", "姉妹"],
-		yomikata: ["ともだち", "かぞく", "きょうだい", "しまい"],
+		options: [
+			{ option: "友達", yomikata: "ともだち" },
+			{ option: "家族", yomikata: "かぞく" },
+			{ option: "兄弟", yomikata: "きょうだい" },
+			{ option: "姉妹", yomikata: "しまい" }
+		],
 		correctAnswer: "友達"
 	},
 	{
 		id: 16,
 		image: uncle,
-		options: ["叔父", "叔母", "兄弟", "姉妹"],
-		yomikata: ["おじ", "おば", "きょうだい", "しまい"],
+		options: [
+			{ option: "叔父", yomikata: "おじ" },
+			{ option: "叔母", yomikata: "おば" },
+			{ option: "兄弟", yomikata: "きょうだい" },
+			{ option: "姉妹", yomikata: "しまい" }
+		],
 		correctAnswer: "叔父"
 	},
 	{
 		id: 17,
 		image: aunt,
-		options: ["叔父", "叔母", "兄弟", "姉妹"],
-		yomikata: ["おじ", "おば", "きょうだい", "しまい"],
+		options: [
+			{ option: "叔父", yomikata: "おじ" },
+			{ option: "叔母", yomikata: "おば" },
+			{ option: "兄弟", yomikata: "きょうだい" },
+			{ option: "姉妹", yomikata: "しまい" }
+		],
 		correctAnswer: "叔母"
 	}
 ];

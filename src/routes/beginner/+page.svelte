@@ -31,7 +31,7 @@
 		const res = await fetch("/questions", {
 			method: "POST",
 			body: JSON.stringify({
-				answer: toUnicode(answer.textContent!.trim()),
+				answer: toUnicode(answer.textContent!.split(" ")[0].trim()),
 				correctAnswer: toUnicode(question.correctAnswer.trim())
 			}),
 			headers: {
@@ -62,12 +62,15 @@
 				class="flex flex-col justify-between mx-auto my-2 items-center gap-6 p-4"
 				on:click={handleAnswer}
 			>
-				{#each question.options as option (option + question.id)}
+				{#each question.options as option (option.option + question.id)}
 					<button
 						id={String(question.id)}
-						class="btn bg-sp-dark-purple btn-wide text-white text-xl"
+						class="btn bg-sp-dark-purple relative pt-4 btn-wide text-white text-xl"
 					>
-						{option}
+						{option.option}
+						<span class="absolute top-1 text-xs">
+							{option.yomikata}
+						</span>
 					</button>
 				{/each}
 			</div>
