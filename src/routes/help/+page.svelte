@@ -12,7 +12,7 @@
 			</div>
 		{/each}
 	</div>
-	<aside class="absolute right-4 w-[16rem] z-20">
+	<aside class="fixed right-4 w-[16rem] z-20">
 		<h4 class="font-semibold mb-4 leading-6 text-md text-slate-100">On this page</h4>
 		<ul class="text-xl leading-6 text-slate-500">
 			{#each Object.entries(data) as [key, _]}

@@ -3,11 +3,12 @@
 	import LoadingSpinner from "$lib/components/LoadingSpinner.svelte";
 	import { addScore, addCount } from "$lib/stores/score";
 	import type { beginner } from "$lib/utils/data";
-	import { fetchQuestion, toUnicode } from "$lib/utils/helper";
+	import { pickQuestion, toUnicode } from "$lib/utils/helper";
 	import type { PageData } from "./$types";
+	import { goto } from "$app/navigation";
 
 	export let data: PageData;
-	let question: beginner = data.question;
+	let question: beginner = pickQuestion(data.questions);
 	let answer: Element | null;
 	let loading: boolean = false;
 
@@ -41,14 +42,19 @@
 			}
 		});
 
-		answer = null;
-		question = await fetchQuestion("beginner");
-		loading = false;
-
 		const correct = await res.json();
 
-		if (!correct) return;
-		addScore();
+		if (correct) addScore();
+
+		answer = null;
+
+		if (data.questions.length < 1) {
+			goto("/result");
+			return;
+		}
+
+		question = pickQuestion(data.questions);
+		loading = false;
 	};
 </script>
 

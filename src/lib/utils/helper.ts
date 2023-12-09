@@ -22,12 +22,6 @@ export function pickQuestion<T>(arr: Array<T>): T {
 	return pickedQuestion;
 }
 
-export async function fetchQuestion<T>(level: string): Promise<T> {
-	const res = await fetch(`/questions?${level}`);
-
-	return res.json();
-}
-
 export function toUnicode(str: string) {
 	return str
 		.split("")

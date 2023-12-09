@@ -1,7 +1,7 @@
 import { json } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
 import { beginnerQuestions, intermediateQuestions, expertQuestions } from "$lib/utils/data";
-import { pickQuestion } from "$lib/utils/helper";
+import { fetchQuestions } from "$lib/utils/helper";
 
 export const GET: RequestHandler = ({ url }) => {
 	const query = url.search;
@@ -14,8 +14,7 @@ export const GET: RequestHandler = ({ url }) => {
 			  ? intermediateQuestions
 			  : expertQuestions;
 
-	const data = questions.slice();
-	const question = pickQuestion(data);
+	const question = fetchQuestions(questions);
 
 	return json(question);
 };

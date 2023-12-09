@@ -1,13 +1,14 @@
 <script lang="ts">
+	import { goto } from "$app/navigation";
 	import HandlingButton from "$lib/components/HandlingButton.svelte";
 	import LoadingSpinner from "$lib/components/LoadingSpinner.svelte";
 	import { addScore, addCount } from "$lib/stores/score";
 	import type { expert } from "$lib/utils/data";
-	import { fetchQuestion, toUnicode } from "$lib/utils/helper";
+	import { toUnicode, pickQuestion } from "$lib/utils/helper";
 	import type { PageData } from "./$types";
 
 	export let data: PageData;
-	let question: expert = data.question;
+	let question: expert = pickQuestion(data.questions);
 	let answer: Element | null;
 	let loading: boolean = false;
 
@@ -41,14 +42,19 @@
 			}
 		});
 
-		answer = null;
-		question = await fetchQuestion("expert");
-		loading = false;
-
 		const correct = await res.json();
 
-		if (!correct) return;
-		addScore();
+		if (correct) addScore();
+
+		answer = null;
+
+		if (data.questions.length < 1) {
+			goto("/result");
+			return;
+		}
+
+		question = pickQuestion(data.questions);
+		loading = false;
 	};
 </script>
 
