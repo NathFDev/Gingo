@@ -58,7 +58,7 @@
 	};
 </script>
 
-<div class="container mx-auto my-8">
+<div class="container mx-auto my-8 flex-grow">
 	<h1 class="text-center text-2xl font-bold mb-8">Which one is correct based on the text?</h1>
 	{#if loading}
 		<LoadingSpinner />
@@ -67,7 +67,7 @@
 			<div class="px-4 py-4 bg-base-200">{question.text}</div>
 		</div>
 		<div class="card lg:card-side bg-base-300 shadow-xl max-w-3xl mx-auto">
-			<div class="grid grid-cols-2 gap-8 mx-auto p-4" on:click={handleAnswer}>
+			<div class="grid lg:grid-cols-2 gap-8 mx-auto p-4" on:click={handleAnswer}>
 				{#each question.options as option (option + question.id)}
 					<button
 						class="btn bg-sp-dark-purple btn-wide btnx text-white text-xl"

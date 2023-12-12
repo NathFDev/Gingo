@@ -3,7 +3,7 @@ import type { PageLoad } from "./$types";
 
 export const load: PageLoad = async ({ fetch }) => {
 	const res = await fetch("/questions?beginner");
-	const questions = (await res.json()) as beginner;
+	const questions = (await res.json()) as beginner[];
 
 	return {
 		questions

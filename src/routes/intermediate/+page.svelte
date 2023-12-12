@@ -58,12 +58,12 @@
 	};
 </script>
 
-<div class="container mx-auto my-8">
+<div class="container mx-auto my-8 flex-grow">
 	<h1 class="text-center text-2xl font-bold mb-8">Which one is correct statement?</h1>
 	{#if loading}
 		<LoadingSpinner />
 	{:else}
-		<div class="card w-96 bg-base-300 text-neutral-content shadow-xl mx-auto">
+		<div class="card lg:w-96 bg-base-300 text-neutral-content shadow-xl mx-auto">
 			<div class="card-body">
 				<h2 class="text-2xl font-bold mb-8 text-center align-middle">{question.question}</h2>
 				<div class="flex flex-col gap-4 justify-center items-center" on:click={handleAnswer}>

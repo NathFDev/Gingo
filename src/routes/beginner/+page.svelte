@@ -58,7 +58,7 @@
 	};
 </script>
 
-<div class="container mx-auto my-8">
+<div class="container mx-auto my-8 flex-grow">
 	<h1 class="text-center text-2xl font-bold mb-8">Which kanji is correct for following image?</h1>
 	{#if loading}
 		<LoadingSpinner />

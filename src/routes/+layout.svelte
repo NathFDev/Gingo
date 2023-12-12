@@ -4,6 +4,6 @@
 </script>
 
 <TheNav />
-<main>
+<main class="flex flex-col min-h-[90vh]">
 	<slot />
 </main>
