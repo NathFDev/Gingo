@@ -19,11 +19,11 @@
 		if (!target.classList.contains("btn")) return;
 
 		if (answer) {
-			answer.classList.remove("border-solid", "border-4", "border-[#9400ff]");
+			answer.classList.remove("shadow-md", "shadow-white");
 		}
 		answer = target;
 
-		target.classList.add("border-solid", "border-4", "border-[#9400ff]");
+		target.classList.add("shadow-md", "shadow-white");
 	};
 
 	const handleNext = async () => {
@@ -63,7 +63,7 @@
 	{#if loading}
 		<LoadingSpinner />
 	{:else}
-		<div class="card lg:w-96 bg-base-300 text-neutral-content shadow-xl mx-auto">
+		<div class="card sm:w-[30rem] bg-base-300 text-neutral-content shadow-xl mx-auto">
 			<div class="card-body">
 				<h2 class="text-2xl font-bold mb-8 text-center align-middle">{question.question}</h2>
 				<div class="flex flex-col gap-4 justify-center items-center" on:click={handleAnswer}>
