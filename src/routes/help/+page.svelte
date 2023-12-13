@@ -4,7 +4,7 @@
 </script>
 
 <div class="container mx-auto py-8 flex">
-	<div class="relative ml-8 mr-2 max-w-2xl">
+	<div class="relative ml-2 md:ml-8 mr-2 max-w-2xl">
 		{#each Object.entries(data) as [key, value]}
 			<div id={key} class="mb-8">
 				<h2 class="font-bold text-4xl leading-6 mb-4">{value.title}</h2>
@@ -12,7 +12,7 @@
 			</div>
 		{/each}
 	</div>
-	<aside class="fixed right-4 w-[16rem] z-20">
+	<aside class="hidden fixed right-4 w-[16rem] z-20 lg:inline-block">
 		<h4 class="font-semibold mb-4 leading-6 text-md text-slate-100">On this page</h4>
 		<ul class="text-xl leading-6 text-slate-500">
 			{#each Object.entries(data) as [key, _]}
