@@ -1,4 +1,8 @@
+import { resetScore } from "$lib/stores/score";
+
 export function load() {
+	resetScore();
+
 	return {
 		Introduction: {
 			title: "Introduction",

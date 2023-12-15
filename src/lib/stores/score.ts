@@ -7,14 +7,11 @@ export const addScore = () => {
 	score.update((i) => i + 1);
 };
 
-export const resetScore = () => {
-	score.set(0);
-};
-
 export const addCount = () => {
 	questionCount.update((i) => i + 1);
 };
 
-export const resetCount = () => {
+export const resetScore = () => {
 	questionCount.set(0);
+	score.set(0);
 };
