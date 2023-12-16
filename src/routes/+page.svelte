@@ -57,12 +57,13 @@
 	<div class="hero-overlay bg-opacity-60"></div>
 	<div class="hero-content text-center text-neutral-content">
 		<div class="max-w-md">
-			<h1 class="mb-5 text-6xl font-bold">Hello There</h1>
-			<p class="mb-5 text-md">
+			<h1 class="mb-5 text-7xl font-bold">Hello There</h1>
+			<p class="mb-5 text-lg">
 				Welcome to Gingo, the best website for learning Japanese language. Whether you are a
 				beginner or an advanced learner, Gingo has something for you.
 			</p>
-			<button class="btn btn-primary" onclick="modal_dialog.showModal()">Get Started</button>
+			<button class="btn btn-primary text-lg" onclick="modal_dialog.showModal()">Get Started</button
+			>
 		</div>
 	</div>
 </div>
